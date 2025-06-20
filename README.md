@@ -18,7 +18,7 @@ Aplicación web desarrollada en Django que permite la gestión de tareas por usu
 1. Clonar el repositorio:
 
 ```bash
-git clone https://tu-repo.git
+git clone https://github.com/FelipeMoreno38/prueba-progressa.git
 cd prueba-progresa
 
 python -m venv venv
