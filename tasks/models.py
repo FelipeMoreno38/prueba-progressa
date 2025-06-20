@@ -12,6 +12,13 @@ class Tasks(models.Model):
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
+    def get_status_display_es(self):
+        return {
+            'pending': 'Pendiente',
+            'in_progress': 'En progreso',
+            'completed': 'Completada'
+        }.get(self.status, self.status)
+
     class Meta:
         managed = False
         db_table = 'tasks'

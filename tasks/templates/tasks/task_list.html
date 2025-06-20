@@ -21,7 +21,7 @@
       <tr>
         <td>{{ task.title }}</td>
         <td>{{ task.due_date }}</td>
-        <td>{{ task.status }}</td>
+        <td>{{ task.get_status_display_es }}</td>
         <td>
           {% if task.rick_morty_character %}
             <img src="{{ task.rick_morty_character.image }}" alt="{{ task.rick_morty_character.name }}" style="height: 40px">
