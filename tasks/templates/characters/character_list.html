@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Personajes de Rick and Morty{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Personajes de Rick and Morty</h2>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  {% for character in characters %}
+    <div class="col">
+      <div class="card h-100 shadow">
+        <img src="{{ character.image }}" class="card-img-top" alt="{{ character.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ character.name }}</h5>
+          <p class="card-text mb-1"><strong>Especie:</strong> {{ character.species }}</p>
+          <p class="card-text"><strong>Estado:</strong>
+            {% if character.status == 'Alive' %}
+              <span class="badge bg-success">Vivo</span>
+            {% elif character.status == 'Dead' %}
+              <span class="badge bg-danger">Muerto</span>
+            {% else %}
+              <span class="badge bg-secondary">Desconocido</span>
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<!-- Paginación -->
+{% if pagination.pages > 1 %}
+  <nav class="mt-4">
+    <ul class="pagination justify-content-center">
+      {% if pagination.prev %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ current_page|add:"-1" }}">Anterior</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Anterior</span>
+        </li>
+      {% endif %}
+
+      <li class="page-item active">
+        <span class="page-link">{{ current_page }}</span>
+      </li>
+
+      {% if pagination.next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ current_page|add:"1" }}">Siguiente</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Siguiente</span>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
+{% endblock %}
